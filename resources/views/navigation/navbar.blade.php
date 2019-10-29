@@ -1,8 +1,6 @@
-
-    <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+ <div class="topnav">
+        <a class="active" href="#home">Strona Główna</a>
+        <a href="#news">Przeglądaj</a>
+        <a href="#contact">Kontakt</a>
+        <a href="#about">O Projekcie</a>
     </div>
-
