@@ -35,4 +35,22 @@ class MeasurementController extends Controller
             WHERE id > :number;
         ', ['number'=>$lastNumber]);
     }
+
+    /**
+     * Function returning data form given period of time.
+     */
+    public function getDataFromPeriod($yearStart, $monthStart, $dayStart, $hourStart, $minutesStart, $secondsStart, $yearEnd, $monthEnd, $dayEnd, $hourEnd, $minutesEnd, $secondsEnd){
+        $dateTimeStart = $yearStart . "-" . $monthStart . "-" . $dayStart . " " . $hourStart . ":" . $minutesStart . ":" . $secondsStart;
+        $dateTimeEnd = $yearEnd . "-" . $monthEnd . "-" . $dayEnd . " " . $hourEnd . ":" . $minutesEnd . ":" . $secondsEnd;
+
+        return DB::select('
+            SELECT date, temperature, air_pressure, air_humidity, rainfall, soil_moisture
+            FROM measurement
+            WHERE date > :dateTimeStart
+            AND date <= :dateTimeEnd;
+        ',[
+            'dateTimeStart'=>$dateTimeStart,
+            'dateTimeEnd'=>$dateTimeEnd]
+        );
+    }
 }

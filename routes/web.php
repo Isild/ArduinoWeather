@@ -21,3 +21,4 @@ Route::get('/', function () {
 /* */
 Route::get('/measurmentDay', 'MeasurementController@get24HMeasurement')->name('get24HMeasurement');
 Route::get('/measurment/{lastNumber}', 'MeasurementController@getLastMeasurment')->name('getLastMeasurment');
+Route::get('/measurment/period/{yearStart}/{monthStart}/{dayStart}/{hourStart}/{minutesStart}/{secondsStart}/{yearEnd}/{monthEnd}/{dayEnd}/{hourEnd}/{minutesEnd}/{secondsEnd}', 'MeasurementController@getDataFromPeriod')->name('getDataFromPeriod');
