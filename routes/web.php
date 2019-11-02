@@ -18,4 +18,6 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+/* */
 Route::get('/measurmentDay', 'MeasurementController@get24HMeasurement')->name('get24HMeasurement');
+Route::get('/measurment/{lastNumber}', 'MeasurementController@getLastMeasurment')->name('getLastMeasurment');
