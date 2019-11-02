@@ -8,8 +8,14 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <!-- CSS -->
-    <link rel="stylesheet" href="files/styles/DOMstyles.css">
-    <link rel="stylesheet" href="files/styles/navbarStyle.css">
+    <link rel="stylesheet" href="/files/styles/DOMstyles.css">
+    <link rel="stylesheet" href="/files/styles/navbarStyle.css">
+
+    <!-- podanie adresu do jakiś plików bez http czy https umożliwia laravelowi samoczynne dostosowanie zabezpieczeń do zabezpieczeń panujących na serwerze -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
     @include('navigation.navbar')
@@ -34,22 +40,35 @@
             </div>
         @endif
 
-        <div class="content">
-            <div class="title m-b-md">
-                Laravel
-            </div>
-
-            <div class="links">
-                <a href="https://laravel.com/docs">Docs</a>
-                <a href="https://laracasts.com">Laracasts</a>
-                <a href="https://laravel-news.com">News</a>
-                <a href="https://blog.laravel.com">Blog</a>
-                <a href="https://nova.laravel.com">Nova</a>
-                <a href="https://forge.laravel.com">Forge</a>
-                <a href="https://vapor.laravel.com">Vapor</a>
-                <a href="https://github.com/laravel/laravel">GitHub</a>
-            </div>
+        <div id="diagrams">
+            <center>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <canvas id="temperature" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                    </div>
+                    <div class="col-sm-6">
+                        <canvas id="pressure" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <canvas id="humidity" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                    </div>
+                    <div class="col-sm-6">
+                        <canvas id="rain" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <canvas id="groundHumidity" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                    </div>
+                </div>
+            </center>
         </div>
+
+
     </div>
+
+    <script src="/files/js/viewCharts.js" async></script> <!-- async mówi, żeby skrypt był wykonany asynchronicznie, uzupełnianie danych wywoływać funkcją sprawdzającą czy dokument został wczytany -->
 </body>
 </html>
