@@ -18,3 +18,4 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+Route::get('/measurmentDay', 'MeasurementController@get24HMeasurement')->name('get24HMeasurement');
