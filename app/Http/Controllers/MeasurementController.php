@@ -44,7 +44,7 @@ class MeasurementController extends Controller
         $dateTimeEnd = $yearEnd . "-" . $monthEnd . "-" . $dayEnd . " " . $hourEnd . ":" . $minutesEnd . ":" . $secondsEnd;
 
         return DB::select('
-            SELECT date, temperature, air_pressure, air_humidity, rainfall, soil_moisture
+            SELECT id AS number, date, temperature, air_pressure, air_humidity, rainfall, soil_moisture
             FROM measurement
             WHERE date > :dateTimeStart
             AND date <= :dateTimeEnd;
