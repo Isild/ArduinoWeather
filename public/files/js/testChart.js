@@ -131,4 +131,6 @@ $(document).ready(function() {
     }, 5000)
 })
 
-console.log("koniec pliku test.js, ")
+dadaInterval.push(100)
+
+console.log("koniec pliku test.js, ", dadaInterval)
