@@ -7,7 +7,12 @@ class MeasurementTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
+     * y - rok w którym mają być zaczęte generowane dane,
+     * m - miesiąc w którym mają być zaczęte generowane dane,
+     * d - dzień w którym mają być zaczęte generowane dane,
+     * h - godzina od której mają być generowane dane,
+     * min - minuta od której mają być generowane dane,
+     * s - sekunda od której mają być generowane dane
      * @return void
      */
     public function run()
@@ -15,7 +20,7 @@ class MeasurementTableSeeder extends Seeder
         $y = 2019;
         $m = 11;
         $d = 1;
-        $h = 0;
+        $h = 11;
         $min = 5;
         $s = 0;
 

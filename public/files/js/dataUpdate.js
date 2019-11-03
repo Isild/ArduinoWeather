@@ -7,6 +7,7 @@ var yea = 1996;
 var da = 0;
 var lock = false;
 
+/* Funkcja wrzucająca dane do wykresu */
 function addData(chart, label, data) {
     chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset) => {
@@ -15,6 +16,7 @@ function addData(chart, label, data) {
     chart.update();
 }
 
+/* Funkcja usuwająca pierwszy element z tabeli, robi miejsce dla nowej próbki */
 function removeData(chart) {
     chart.data.labels.splice(0,1);
     chart.data.datasets[0].data.splice(0,1);
@@ -75,25 +77,30 @@ $(document).ready(function() {
         })
             .done(function (res) {
                 dataAjax=res;
-                var tmpLastNumber = 0;
-
+                var tmpLastNumber = 0
                 res.forEach(el => {
                     if(lastNumber < el.number)
                     {
-                        removeData(chartTemperatre);
-                        addData(chartTemperatre, el.date, el.temperature);
+                        dadaInterval.push(el.date);
+                        if(chartTemperatre.data.labels.length >= 288)
+                            removeData(chartTemperatre);
+                        dataTemp.push(el.temperature);
 
-                        removeData(chartPressure);
-                        addData(chartPressure, el.date, el.air_pressure);
+                        if(chartPressure.data.labels.length >= 288)
+                            removeData(chartPressure);
+                        dataPress.push(el.air_pressure);
 
-                        removeData(chartHumidity);
-                        addData(chartHumidity, el.date, el.air_humidity);
+                        if(chartHumidity.data.labels.length >= 288)
+                            removeData(chartHumidity);
+                        dataHum.push(el.air_humidity);
 
-                        removeData(chartRain);
-                        addData(chartRain, el.date, el.rainfall);
+                        if(chartRain.data.labels.length >= 288)
+                            removeData(chartRain);
+                        dataRain.push(el.rainfall);
 
-                        removeData(chartGroundHumidity);
-                        addData(chartGroundHumidity, el.date, el.soil_moisture);
+                        if(chartGroundHumidity.data.labels.length >= 288)
+                            removeData(chartGroundHumidity);
+                        dataGroHum.push(el.soil_moisture);
 
                         tmpLastNumber = el.number;
                     }
