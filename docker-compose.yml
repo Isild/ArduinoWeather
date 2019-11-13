@@ -30,6 +30,7 @@ services:
       MYSQL_DATABASE: mysql
       MYSQL_USER: user
       MYSQL_PASSWORD: user
+    command: --innodb-use-native-aio=0
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: 'phpmyadmin'
