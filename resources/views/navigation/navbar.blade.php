@@ -11,6 +11,8 @@
 
      @if (Route::has('login'))
          @auth
+         <a href="/period">Wyświetl okres</a>
+         <a href="/compare">Porównaj okresy</a>
          <a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a>
          @else
          <a href="/login"><span class="glyphicon glyphicon-log-in"></span> Zaloguj  </a>
