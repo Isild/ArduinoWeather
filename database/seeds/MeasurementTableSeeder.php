@@ -19,15 +19,15 @@ class MeasurementTableSeeder extends Seeder
     {
         $y = 2019;
         $m = 11;
-        $d = 1;
-        $h = 11;
-        $min = 5;
+        $d = 22;
+        $h = 22;
+        $min = 30;
         $s = 0;
 
-        for($j=0; $j<2; $j++){
+        for($j=0; $j<4; $j++){
             // od 00:00 do 6:00
             for($i=0; $i<72; $i++){
-                if($min == 60){
+                if($min >= 60){
                     $min = 0;
                     $h++;
                 }
@@ -53,6 +53,8 @@ class MeasurementTableSeeder extends Seeder
                 ]);
                 $min += 5;
             }
+            $min=0;
+
             // od 06:00 do 12:00
             for($i=0; $i<72; $i++){
                 if($min == 60){
@@ -81,6 +83,8 @@ class MeasurementTableSeeder extends Seeder
                 ]);
                 $min += 5;
             }
+            $min=0;
+
             // od 12:00 do 18:00
             for($i=0; $i<72; $i++){
                 if($min == 60){
@@ -109,6 +113,7 @@ class MeasurementTableSeeder extends Seeder
                 ]);
                 $min += 5;
             }
+            $min=0;
             // od 18:00 do 24:00
             for($i=0; $i<72; $i++){
                 if($min == 60){
