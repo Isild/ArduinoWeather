@@ -34,5 +34,13 @@ Route::delete('/user/{id}', 'UserController@removeUser')->name('removeUser');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Auth::routes();
 
+/* Route to view one period */
+Route::get('/period', function () {
+    return view('selectPeriod');
+});
+/* Route to view two periods */
+Route::get('/compare', function () {
+    return view('comparePeriods');
+});
 /* */
 Route::get('/home', 'HomeController@index')->name('home');

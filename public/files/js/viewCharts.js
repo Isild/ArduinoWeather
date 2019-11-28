@@ -25,7 +25,9 @@ var chartTemperatre = new Chart(ctxTemperature, {
         datasets: [
             {
                 label: 'Temperatura',
-                data: dataTemp
+                data: dataTemp,
+                borderColor: 'rgba(255, 0, 0, 1)',
+                borderWidth: 1
             }
         ]
     },
@@ -42,7 +44,9 @@ var chartPressure = new Chart(ctxPressure, {
         datasets: [
             {
                 label: 'Ciśnienie',
-                data: dataPress
+                data: dataPress,
+                borderColor: 'rgb(6,3,1)',
+                borderWidth: 1
             }
         ]
     },
@@ -59,7 +63,9 @@ var chartHumidity = new Chart(ctxHumidity, {
         datasets: [
             {
                 label: 'Wilgotność',
-                data: dataHum
+                data: dataHum,
+                borderColor: 'rgb(255,103,17)',
+                borderWidth: 1
             }
         ]
     },
@@ -76,7 +82,9 @@ var chartRain = new Chart(ctxRain, {
         datasets: [
             {
                 label: 'Opady',
-                data: dataRain
+                data: dataRain,
+                borderColor: 'rgb(21,34,255)',
+                borderWidth: 1
             }
         ]
     },
@@ -93,7 +101,9 @@ var chartGroundHumidity = new Chart(ctxGroundHumidity, {
         datasets: [
             {
                 label: 'Wilgotoność gleby',
-                data: dataGroHum
+                data: dataGroHum,
+                borderColor: 'rgb(42,4,255)',
+                borderWidth: 1
             }
         ]
     },
@@ -102,3 +112,114 @@ var chartGroundHumidity = new Chart(ctxGroundHumidity, {
         maintainAspectRatio: false,
     }
 });
+
+var clearCharts = function () {
+    dadaInterval = [];
+    destroyCharts();
+    createCharts();
+}
+
+var destroyCharts = function () {
+    chartTemperatre.destroy();
+    chartPressure.destroy();
+    chartHumidity.destroy();
+    chartRain.destroy();
+    chartGroundHumidity.destroy();
+}
+
+var createCharts = function () {
+    chartTemperatre = new Chart(ctxTemperature, {
+        type: 'line',
+        data: {
+            labels: dadaInterval,
+            datasets: [
+                {
+                    label: 'Temperatura',
+                    data: dataTemp,
+                    borderColor: 'rgba(255, 0, 0, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+        }
+    });
+
+    chartPressure = new Chart(ctxPressure, {
+        type: 'line',
+        data: {
+            labels: dadaInterval,
+            datasets: [
+                {
+                    label: 'Ciśnienie',
+                    data: dataPress,
+                    borderColor: 'rgb(6,3,1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+        }
+    });
+
+    chartHumidity = new Chart(ctxHumidity, {
+        type: 'line',
+        data: {
+            labels: dadaInterval,
+            datasets: [
+                {
+                    label: 'Wilgotność',
+                    data: dataHum,
+                    borderColor: 'rgb(255,103,17)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+        }
+    });
+
+    chartRain = new Chart(ctxRain, {
+        type: 'line',
+        data: {
+            labels: dadaInterval,
+            datasets: [
+                {
+                    label: 'Opady',
+                    data: dataRain,
+                    borderColor: 'rgb(21,34,255)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+        }
+    });
+
+    chartGroundHumidity = new Chart(ctxGroundHumidity, {
+        type: 'line',
+        data: {
+            labels: dadaInterval,
+            datasets: [
+                {
+                    label: 'Wilgotoność gleby',
+                    data: dataGroHum,
+                    borderColor: 'rgb(42,4,255)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: false,
+            maintainAspectRatio: false,
+        }
+    });
+}

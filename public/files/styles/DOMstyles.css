@@ -1,7 +1,9 @@
 /* Style wyglądu stron */
 html, body {
-    background-color: #343434!important;
-    color: #e6f7fe;
+    /*background-color: #343434!important;
+    color: #e6f7fe;*/
+    background-color: white !important;
+    color: black;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
 
@@ -10,5 +12,6 @@ html, body {
 }
 
 .container{
-    color: white;
+    /*color: white;*/
+    color: black;
 }
