@@ -116,21 +116,5 @@ var yea = 2100;
 var da = 500;
 
 $(document).ready(function() {
-    setInterval(function () {
-        removeData(chartTemperatre);
-        addData(chartTemperatre, yea, da);
-    }, 5000)
+
 })
-
-
-$(document).ready(function() {
-    setInterval(function () {
-        yea = yea + 50;
-        da = da + 50;
-        console.log("year: ", yea, ", data: ", da);
-    }, 5000)
-})
-
-dadaInterval.push(100)
-
-console.log("koniec pliku test.js, ", dadaInterval)
