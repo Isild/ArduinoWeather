@@ -18,6 +18,13 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
 /* Routes for getting data of measurments. */
 Route::get('/measurmentDay', 'MeasurementController@get24HMeasurement')->name('get24HMeasurement');
 Route::get('/measurment/{lastNumber}', 'MeasurementController@getLastMeasurment')->name('getLastMeasurment');
