@@ -1,12 +1,4 @@
 $(document).ready(function() {
-    init();
-
-    $("#show-data-btn").click(function(){
-        showData();
-    });
-})
-
-var init = function () {
     var datapickerStart = $("#datepicker-start");
     var datapickerEnd = $("#datepicker-end");
     var data = new Date();
@@ -15,6 +7,53 @@ var init = function () {
     var month = data.getMonth() + 1;
     var year = data.getFullYear();
 
+    if(day == '0')
+    {
+        day2++;
+        day++;
+    }
+    if(day < 10)
+    {
+        day = '0' + day;
+    }
+    if(day2 < 10)
+    {
+        day2 = '0' + day2;
+    }
+    if(month < 10)
+    {
+        month = '0' + month;
+    }
+
+    var dataString = day + '-' + month + '-' + year;
+    var dataString2 = day2 + '-' + month + '-' + year;
+
+    datapickerStart.datepicker({
+        dateFormat: 'dd-mm-yy',
+    });
+    datapickerEnd.datepicker({
+        dateFormat: 'dd-mm-yy',
+    });
+
+    datapickerStart.val(dataString);
+    datapickerEnd.val(dataString2);
+
+    $("#show-data-btn").click(function(){
+        showData();
+    });
+})
+
+var initDOM = function () {
+    var datapickerStart = $("#datepicker-start");
+    var datapickerEnd = $("#datepicker-end");
+    var data = new Date();
+    var day = data.getDay();
+    var day2 = day + 1;
+    var month = data.getMonth() + 1;
+    var year = data.getFullYear();
+
+    if(day == '0')
+        day2++;
     if(day < 10)
     {
         day = '0' + day;

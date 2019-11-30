@@ -9,6 +9,11 @@ $(document).ready(function() {
     var month = data.getMonth() + 1;
     var year = data.getFullYear();
 
+    if(day == '0')
+    {
+        day2++;
+        day++;
+    }
     if(day < 10)
     {
         day = '0' + day;
