@@ -34,8 +34,5 @@
 <center>
     <p>Strona powstała w ramach pracy inżynierskiej na Politechnice Wrocławskiej.</p>
 </center>
-
-<script src="/files/js/viewCharts.js" async></script> <!-- async mówi, żeby skrypt był wykonany asynchronicznie, uzupełnianie danych wywoływać funkcją sprawdzającą czy dokument został wczytany -->
-<script src="/files/js/selectPeriod.js" async></script>
 </body>
 </html>

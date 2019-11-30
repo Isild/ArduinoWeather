@@ -36,7 +36,5 @@
     <p>Jeśli masz jakiekolwiek pytania skontaktuj się z twórcą.</p>
 </center>
 
-<script src="/files/js/viewCharts.js" async></script> <!-- async mówi, żeby skrypt był wykonany asynchronicznie, uzupełnianie danych wywoływać funkcją sprawdzającą czy dokument został wczytany -->
-<script src="/files/js/selectPeriod.js" async></script>
 </body>
 </html>
