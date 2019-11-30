@@ -54,8 +54,6 @@
                 <button type="button" id="show-data-btn">Wyświetl dane</button>
             </div>
         </div>
-
-
     </div>
     <div id="diagrams">
         <center>

@@ -1,7 +1,5 @@
 $(document).ready(function() {
     init();
-    console.log('no i cyk jest kalendarzyk')
-    console.log($("show-data-btn"))
 
     $("#show-data-btn").click(function(){
         showData();
@@ -16,7 +14,6 @@ var init = function () {
     var day2 = day + 1;
     var month = data.getMonth() + 1;
     var year = data.getFullYear();
-    console.log(day)
 
     if(day < 10)
     {
@@ -47,7 +44,7 @@ var init = function () {
 
 var showData = function () {
     var vali = validateData($("#datepicker-start").val(), $("#datepicker-end").val());
-    console.log(vali)
+
     if (vali == 1){
         sendRequest();
     }
@@ -80,7 +77,7 @@ var validateData = function (dateS, dateE) {
 var sendRequest = function () {
     //jakiś ajax
     clearCharts();
-    console.log('poszedł request!')
+
     var dateS = $("#datepicker-start").val();
     var dateE = $("#datepicker-end").val();
 
@@ -89,7 +86,6 @@ var sendRequest = function () {
 
 var getData = function (dS, mS, yS, dE, mE, yE) {
     var parameters = yS + '/' + mS + '/' + dS + '/00/00/00/' + yE + '/' + mE + '/' + dE + '/00/00/00/';
-    console.log(parameters)
 
     var dataAjax;
     var lock = false;
