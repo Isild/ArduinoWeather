@@ -53,4 +53,28 @@ class MeasurementController extends Controller
             'dateTimeEnd'=>$dateTimeEnd]
         );
     }
+
+    /**
+     * Function getting data from wether station and put into database
+     */
+    public function storeData($deviceKeay, $tempC, $hum, $temp, $pres, $humiGr, $rain, $isRain, $isGroundWet){
+        $key = 'C9G0WH9D6KB2I4IY';
+
+        if($key === $deviceKeay){
+            DB::select('
+                INSERT INTO measurement(temperature, air_pressure, air_humidity, rainfall, soil_moisture) 
+                VALUES (:temp, :pres, :hum, :rain, :humuGr)
+            ',[
+                    'hum'=>$hum,
+                    'temp'=>$temp,
+                    'pres'=>$pres,
+                    'humuGr'=>$humiGr,
+                    'rain'=>$rain
+                ]
+            );
+            return 1;
+        } else {
+            return -1;
+        }
+    }
 }

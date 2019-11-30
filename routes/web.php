@@ -49,5 +49,9 @@ Route::get('/period', function () {
 Route::get('/compare', function () {
     return view('comparePeriods');
 });
+
+/* Route to update parameters */
+Route::get('/measurement/update/{deviceKeay}/{tempC}/{hum}/{temp}/{pres}/{humiGr}/{rain}/{isRain}/{isGroundWet}', 'MeasurementController@storeData');
+//Route::put('/update?key={deviceKeay}&field1={tempC}&field2={hum}&field3={temp}&field4={pres}&field5={humiGr}&field6={rain}&field7={isRain}&field8={isGroundWet}', 'MeasurementController@storeData')->name('storeData');
 /* */
 Route::get('/home', 'HomeController@index')->name('home');
