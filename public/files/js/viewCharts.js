@@ -24,7 +24,7 @@ var chartTemperatre = new Chart(ctxTemperature, {
         labels: dadaInterval,
         datasets: [
             {
-                label: 'Temperatura',
+                label: 'Temperatura powietrza',
                 data: dataTemp,
                 borderColor: 'rgba(255, 0, 0, 1)',
                 borderWidth: 1
@@ -34,6 +34,23 @@ var chartTemperatre = new Chart(ctxTemperature, {
     options: {
         responsive: false,
         maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Temperatura [°C]"
+                }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: "Data"
+                }
+            }]
+        }
     }
 });
 
@@ -53,6 +70,23 @@ var chartPressure = new Chart(ctxPressure, {
     options: {
         responsive: false,
         maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Ciśnienie [hPa]"
+                }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: "Data"
+                }
+            }]
+        }
     }
 });
 
@@ -62,7 +96,7 @@ var chartHumidity = new Chart(ctxHumidity, {
         labels: dadaInterval,
         datasets: [
             {
-                label: 'Wilgotność',
+                label: 'Wilgotność powietrza',
                 data: dataHum,
                 borderColor: 'rgb(255,103,17)',
                 borderWidth: 1
@@ -72,6 +106,23 @@ var chartHumidity = new Chart(ctxHumidity, {
     options: {
         responsive: false,
         maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Wilgotność[%]"
+                }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: "Data"
+                }
+            }]
+        }
     }
 });
 
@@ -91,6 +142,23 @@ var chartRain = new Chart(ctxRain, {
     options: {
         responsive: false,
         maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Opady"
+                }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: "Data"
+                }
+            }]
+        }
     }
 });
 
@@ -110,6 +178,23 @@ var chartGroundHumidity = new Chart(ctxGroundHumidity, {
     options: {
         responsive: false,
         maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Wilgotnoś[%]"
+                }
+            }],
+            xAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: "Data"
+                }
+            }]
+        }
     }
 });
 
