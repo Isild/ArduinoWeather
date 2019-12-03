@@ -115,7 +115,14 @@ var validateData = function (dateS, dateE) {
 
 var sendRequest = function () {
     //jakiś ajax
-    clearCharts();
+    //clearCharts();
+    /*
+    chart.data.labels.splice(0,1);
+    chart.data.datasets[0].data.splice(0,1);
+    chart.update();
+    */
+
+
 
     var dateS = $("#datepicker-start").val();
     var dateE = $("#datepicker-end").val();
@@ -141,6 +148,42 @@ var getData = function (dS, mS, yS, dE, mE, yE) {
         })
             .done(function (res) {
                 dataAjax=res;
+                if(chartTemperatre.data.labels.length != 0){
+                    for(i=0; i<chartTemperatre.data.labels.length; i++){
+                        chartTemperatre.data.labels.splice(0,1);
+                        chartTemperatre.data.datasets[0].data.splice(0,1);
+                    }
+                }
+                if(chartPressure.data.labels.length != 0){
+                    for(i=0; i<chartPressure.data.labels.length; i++){
+                        chartPressure.data.labels.splice(0,1);
+                        chartPressure.data.datasets[0].data.splice(0,1);
+                    }
+                }
+                if(chartHumidity.data.labels.length != 0){
+                    for(i=0; i<chartHumidity.data.labels.length; i++){
+                        chartHumidity.data.labels.splice(0,1);
+                        chartHumidity.data.datasets[0].data.splice(0,1);
+                    }
+                }
+                if(chartRain.data.labels.length != 0){
+                    for(i=0; i<chartRain.data.labels.length; i++){
+                        chartRain.data.labels.splice(0,1);
+                        chartRain.data.datasets[0].data.splice(0,1);
+                    }
+                }
+                if(chartGroundHumidity.data.labels.length != 0){
+                    for(i=0; i<chartGroundHumidity.data.labels.length; i++){
+                        chartGroundHumidity.data.labels.splice(0,1);
+                        chartGroundHumidity.data.datasets[0].data.splice(0,1);
+                    }
+                }
+                if(dadaInterval && dadaInterval.data){
+                    for(i=0; i<dadaInterval.data.labels.length; i++){
+                        dadaInterval.data.labels.splice(0,1);
+                        dadaInterval.data.datasets[0].data.splice(0,1);
+                    }
+                }
 
                 res.forEach(el => {
                     dataTemp.push(el.temperature);
