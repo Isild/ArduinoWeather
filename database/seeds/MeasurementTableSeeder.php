@@ -19,12 +19,18 @@ class MeasurementTableSeeder extends Seeder
     {
         $y = 2019;
         $m = 11;
-        $d = 22;
-        $h = 22;
-        $min = 30;
+        $d = 20;
+        $h = 0;
+        $min = 50;
         $s = 0;
+        $temperature = 15;
+        $pressuer = 1008;
+        $humidity = 80;
+        $rainfall = 0;
+        $humidity_ground = 20;
+        $boolRain = 0;
 
-        for($j=0; $j<4; $j++){
+        for($j=0; $j<12; $j++){
             // od 00:00 do 6:00
             for($i=0; $i<72; $i++){
                 if($min >= 60){
@@ -39,18 +45,43 @@ class MeasurementTableSeeder extends Seeder
                     $d = 1;
                     $m++;
                 }
-                if($m == 12){
+                if($m == 13){
                     $m = 1;
                     $y++;
                 }
                 DB::table('measurement')->insert([
                     'date' => $y . '-' . $m . '-' . $d . ' ' . $h . ":" . $min . ":" . $s,
-                    'temperature' => 0+rand(0,5),
-                    'air_pressure' => 1024,
-                    'air_humidity' => 50-rand(0,10),
-                    'rainfall' => 0,
-                    'soil_moisture' => 50-rand(0,10),
+                    'temperature' => $temperature,
+                    'air_pressure' => $pressuer,
+                    'air_humidity' => $humidity,
+                    'rainfall' => $rainfall,
+                    'soil_moisture' => $humidity_ground,
                 ]);
+
+                $temperature = $temperature+rand(0,1)/4+rand(0,1)/4;
+                $pressuer = 1009;
+                $humidity = $humidity+rand(0,1)/2;
+                if(rand(0,100) == 46) {
+                    if($boolRain == 0) {
+                        $boolRain = 1;
+                    } else {
+                        $boolRain = 0;
+                    }
+                }
+                if($boolRain == 1) {
+                    if($rainfall <= 600){
+                        $rainfall += 10;
+                    }
+                } else {
+                    if($rainfall > 0){
+                        $rainfall -= 10;
+                    }
+                }
+                if(rand(0,100) >= 50){
+                    $humidity_ground += rand(0,1)/2;
+                } else {
+                    $humidity_ground -= rand(0,1)/2;
+                }
                 $min += 5;
             }
             $min=0;
@@ -69,18 +100,42 @@ class MeasurementTableSeeder extends Seeder
                     $d = 1;
                     $m++;
                 }
-                if($m == 12){
+                if($m == 13){
                     $m = 1;
                     $y++;
                 }
                 DB::table('measurement')->insert([
                     'date' => $y . '-' . $m . '-' . $d . ' ' . $h . ":" . $min . ":" . $s,
-                    'temperature' => 15+rand(0,5),
-                    'air_pressure' => 1024,
-                    'air_humidity' => 30-rand(0,10),
-                    'rainfall' => 0,
-                    'soil_moisture' => 30-rand(0,10),
+                    'temperature' => $temperature,
+                    'air_pressure' => $pressuer,
+                    'air_humidity' => $humidity,
+                    'rainfall' => $rainfall,
+                    'soil_moisture' => $humidity_ground,
                 ]);
+                $temperature = $temperature+rand(0,1)/4+rand(0,1)/100;
+                $pressuer = 1009;
+                $humidity = $humidity-rand(0,1)/2;
+                if(rand(0,100) == 46) {
+                    if($boolRain == 0) {
+                        $boolRain = 1;
+                    } else {
+                        $boolRain = 0;
+                    }
+                }
+                if($boolRain == 1) {
+                    if($rainfall <= 600){
+                        $rainfall += 10;
+                    }
+                } else {
+                    if($rainfall > 0){
+                        $rainfall -= 10;
+                    }
+                }
+                if(rand(0,100) >= 50){
+                    $humidity_ground += rand(0,1)/2;
+                } else {
+                    $humidity_ground -= rand(0,1)/2;
+                }
                 $min += 5;
             }
             $min=0;
@@ -99,21 +154,45 @@ class MeasurementTableSeeder extends Seeder
                     $d = 1;
                     $m++;
                 }
-                if($m == 12){
+                if($m == 13){
                     $m = 1;
                     $y++;
                 }
                 DB::table('measurement')->insert([
                     'date' => $y . '-' . $m . '-' . $d . ' ' . $h . ":" . $min . ":" . $s,
-                    'temperature' => 25-rand(0,5),
-                    'air_pressure' => 1024,
-                    'air_humidity' => 30+rand(0,10),
-                    'rainfall' => 0,
-                    'soil_moisture' => 30+rand(0,10),
+                    'temperature' => $temperature,
+                    'air_pressure' => $pressuer,
+                    'air_humidity' => $humidity,
+                    'rainfall' => $rainfall,
+                    'soil_moisture' => $humidity_ground,
                 ]);
+                $temperature = $temperature-rand(0,1)/4;
+                $pressuer = 1008;
+                $humidity = 40-rand(0,1)/2;
+                if(rand(0,100) == 46) {
+                    if($boolRain == 0) {
+                        $boolRain = 1;
+                    } else {
+                        $boolRain = 0;
+                    }
+                }
+                if($boolRain == 1) {
+                    if($rainfall <= 600){
+                        $rainfall += 10;
+                    }
+                } else {
+                    if($rainfall > 0){
+                        $rainfall -= 10;
+                    }
+                }
+                if(rand(0,100) >= 50){
+                    $humidity_ground += rand(0,1)/2;
+                } else {
+                    $humidity_ground -= rand(0,1)/2;
+                }
                 $min += 5;
             }
-            $min=0;
+
             // od 18:00 do 24:00
             for($i=0; $i<72; $i++){
                 if($min == 60){
@@ -128,18 +207,42 @@ class MeasurementTableSeeder extends Seeder
                     $d = 1;
                     $m++;
                 }
-                if($m == 12){
+                if($m == 13){
                     $m = 1;
                     $y++;
                 }
                 DB::table('measurement')->insert([
                     'date' => $y . '-' . $m . '-' . $d . ' ' . $h . ":" . $min . ":" . $s,
-                    'temperature' => 15-rand(0,5),
-                    'air_pressure' => 1024,
-                    'air_humidity' => 40+rand(0,10),
-                    'rainfall' => 1,
-                    'soil_moisture' => 40+rand(0,10),
+                    'temperature' => $temperature,
+                    'air_pressure' => $pressuer,
+                    'air_humidity' => $humidity,
+                    'rainfall' => $rainfall,
+                    'soil_moisture' => $humidity_ground,
                 ]);
+                $temperature = $temperature-rand(0,1)/4-rand(0,1)/4;
+                $pressuer = 1007;
+                $humidity = 40+rand(0,1)/2;
+                if(rand(0,100) == 46) {
+                    if($boolRain == 0) {
+                        $boolRain = 1;
+                    } else {
+                        $boolRain = 0;
+                    }
+                }
+                if($boolRain == 1) {
+                    if($rainfall <= 600){
+                        $rainfall += 10;
+                    }
+                } else {
+                    if($rainfall > 0){
+                        $rainfall -= 10;
+                    }
+                }
+                if(rand(0,100) >= 50){
+                    $humidity_ground += rand(0,1)/2;
+                } else {
+                    $humidity_ground -= rand(0,1)/2;
+                }
                 $min += 5;
             }
         }
