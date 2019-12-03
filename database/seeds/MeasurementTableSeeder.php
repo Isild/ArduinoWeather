@@ -58,7 +58,7 @@ class MeasurementTableSeeder extends Seeder
                     'soil_moisture' => $humidity_ground,
                 ]);
 
-                $temperature = $temperature+rand(0,1)/4+rand(0,1)/4;
+                $temperature = $temperature+rand(0,1)/4;
                 $pressuer = 1009;
                 $humidity = $humidity+rand(0,1)/2;
                 if(rand(0,100) == 46) {
@@ -219,7 +219,7 @@ class MeasurementTableSeeder extends Seeder
                     'rainfall' => $rainfall,
                     'soil_moisture' => $humidity_ground,
                 ]);
-                $temperature = $temperature-rand(0,1)/4-rand(0,1)/4;
+                $temperature = $temperature-rand(0,1)/4-rand(0,1)/100;
                 $pressuer = 1007;
                 $humidity = 40+rand(0,1)/2;
                 if(rand(0,100) == 46) {
