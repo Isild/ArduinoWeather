@@ -185,14 +185,31 @@ var getData = function (dS, mS, yS, dE, mE, yE) {
                     }
                 }
 
+                var number = Math.floor(res.length/1000);
+                var count = 0;
+                var length = res.length;
+                //console.log('resp: number: ', number, ', res.length: ', res.length, ', % ', res.length/200);
                 res.forEach(el => {
-                    dataTemp.push(el.temperature);
-                    dataPress.push(el.air_pressure);
-                    dataHum.push(el.air_humidity);
-                    dataRain.push(el.rainfall);
-                    dataGroHum.push(el.soil_moisture);
-                    dadaInterval.push(el.date);//*/
-                    lastNumber = el.number;
+                    //console.log(el.temperature)
+                    if(count%number == 0 && length > 2000 ){
+                        dataTemp.push(el.temperature);
+                        dataPress.push(el.air_pressure);
+                        dataHum.push(el.air_humidity);
+                        dataRain.push(el.rainfall);
+                        dataGroHum.push(el.soil_moisture);
+                        dadaInterval.push(el.date);//*/
+                        lastNumber = el.number;
+                        count = 0;
+                    } else if (length <= 2000){
+                        dataTemp.push(el.temperature);
+                        dataPress.push(el.air_pressure);
+                        dataHum.push(el.air_humidity);
+                        dataRain.push(el.rainfall);
+                        dataGroHum.push(el.soil_moisture);
+                        dadaInterval.push(el.date);//*/
+                        lastNumber = el.number;
+                    }
+                    count++;
                 })
 
                 chartTemperatre.update();
