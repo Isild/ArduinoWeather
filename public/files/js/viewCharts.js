@@ -78,6 +78,10 @@ var chartPressure = new Chart(ctxPressure, {
                 scaleLabel: {
                     display: true,
                     labelString: "Ciśnienie [hPa]"
+                },
+                ticks: {
+                    suggestedMin: 995,
+                    suggestedMax: 1025
                 }
             }],
             xAxes: [{
