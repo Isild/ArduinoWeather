@@ -7,12 +7,12 @@
          <a href="/contact">Kontakt</a>
          <a href="/period">Wyświetl okres</a>
          <a href="/compare">Porównaj okresy</a>
-         <a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a>
+         <a href="/logout" style="float: right;"><span class="glyphicon glyphicon-log-out"></span> Wyloguj</a>
          @else
-         <a href="/login"><span class="glyphicon glyphicon-log-in"></span> Zaloguj  </a>
+         <a href="/login" style="float: right;"><span class="glyphicon glyphicon-log-in"></span> Zaloguj  </a>
 
              @if (Route::has('register'))
-         <a href="/register">Zarejestruj</a>
+         <a href="/register" style="float: right;">Zarejestruj</a>
              @endif
          @endauth
      @endif
