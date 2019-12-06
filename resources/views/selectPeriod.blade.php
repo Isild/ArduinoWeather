@@ -51,7 +51,7 @@
         <div class="form-group row">
             <label class="col-md-2 text-md-right"> </label>
             <div class="col-md-6">
-                <button type="button" id="show-data-btn">Wyświetl dane</button>
+                <button type="button" class="btn btn-primary" id="show-data-btn">Wyświetl dane</button>
             </div>
         </div>
     </div>

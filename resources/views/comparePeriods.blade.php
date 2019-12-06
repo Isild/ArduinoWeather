@@ -68,7 +68,7 @@
         <div class="form-group row">
             <label class="col-md-1 text-md-right"> </label>
             <div class="col-md-6">
-                <button type="button" id="show-data-btn">Porównaj</button>
+                <button type="button" class="btn btn-primary" id="show-data-btn">Porównaj</button>
             </div>
         </div>
     </div>
