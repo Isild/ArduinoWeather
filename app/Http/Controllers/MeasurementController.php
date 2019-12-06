@@ -98,6 +98,94 @@ class MeasurementController extends Controller
     }
 
     /**
+     * Function returning data form given period of time.
+     */
+    public function getDataFromPeriodWithoutAverage($yearStart, $monthStart, $dayStart, $hourStart, $minutesStart, $secondsStart, $yearEnd, $monthEnd, $dayEnd, $hourEnd, $minutesEnd, $secondsEnd){
+        $dateTimeStart = $yearStart . "-" . $monthStart . "-" . $dayStart . " " . $hourStart . ":" . $minutesStart . ":" . $secondsStart;
+        $dateTimeEnd = $yearEnd . "-" . $monthEnd . "-" . $dayEnd . " " . $hourEnd . ":" . $minutesEnd . ":" . $secondsEnd;
+
+        return DB::select('
+            SELECT id AS number, date, temperature, air_pressure, air_humidity, rainfall, soil_moisture
+            FROM measurement
+            WHERE date > :dateTimeStart
+            AND date <= :dateTimeEnd;
+        ',[
+                'dateTimeStart'=>$dateTimeStart,
+                'dateTimeEnd'=>$dateTimeEnd]
+        );
+    }
+
+    /**
+     * Function returning average data form given period of time.
+     */
+    public function getAverageDatas($yearStart, $monthStart, $dayStart, $hourStart, $minutesStart, $secondsStart, $yearEnd, $monthEnd, $dayEnd, $hourEnd, $minutesEnd, $secondsEnd){
+        $data = $this->getDataFromPeriodWithoutAverage($yearStart, $monthStart, $dayStart, $hourStart, $minutesStart, $secondsStart, $yearEnd, $monthEnd, $dayEnd, $hourEnd, $minutesEnd, $secondsEnd);
+        $averageData = array();
+        $avgTempDay = 0;
+        $avgTempNight = 0;
+        $avgPresDay = 0;
+        $avgPresNight = 0;
+        $avgHumDay = 0;
+        $avgHumNight = 0;
+        $avgRainDay = 0;
+        $avgRainNight = 0;
+        $avgGroundHumDay = 0;
+        $avgGroundHumNight = 0;
+        $dntDay = 0;
+        $cntNight = 0;
+
+        $dataToReturn = json_decode(json_encode($data), true);
+        $lengthArr = count($data);
+
+        for($i=0; $i<$lengthArr; $i++){
+            if(($dataToReturn[$i]['date'][11] == 0 && $dataToReturn[$i]['date'][12] >= 8) || ($dataToReturn[$i]['date'][11] == 1 && $dataToReturn[$i]['date'][11] <= 9)){
+                $avgTempDay += $dataToReturn[$i]['temperature'];
+                $avgPresDay += $dataToReturn[$i]['air_pressure'];
+                $avgHumDay += $dataToReturn[$i]['air_humidity'];
+                $avgRainDay += $dataToReturn[$i]['rainfall'];
+                $avgGroundHumDay += $dataToReturn[$i]['soil_moisture'];
+                $dntDay++;
+            } else {
+                $avgTempNight += $dataToReturn[$i]['temperature'];
+                $avgPresNight += $dataToReturn[$i]['air_pressure'];
+                $avgHumNight += $dataToReturn[$i]['air_humidity'];
+                $avgRainNight += $dataToReturn[$i]['rainfall'];
+                $avgGroundHumNight += $dataToReturn[$i]['soil_moisture'];
+                $cntNight++;
+            }
+
+        }
+
+        //return [$avgTempDay, $lengthArr-1, ($avgTempDay /$lengthArr)];
+
+        $avgTempDay /= $dntDay;
+        $avgPresDay /= $dntDay;
+        $avgHumDay /= $dntDay;
+        $avgRainDay /= $dntDay;
+        $avgGroundHumDay /= $dntDay;
+        $avgTempNight /= $cntNight;
+        $avgPresNight /= $cntNight;
+        $avgHumNight /= $cntNight;
+        $avgRainNight /= $cntNight;
+        $avgGroundHumNight /= $cntNight;
+
+        array_push($averageData, [
+            'avg_temperature_day'=>round($avgTempDay,2),
+            'avg_temperature_night'=>round($avgTempNight,2),
+            'avg_pressure_day'=>round($avgPresDay,2),
+            'avg_pressure_night'=>round($avgPresNight,2),
+            'avg_humidity_day'=>round($avgHumDay,2),
+            'avg_humidity_night'=>round($avgHumNight,2),
+            'avg_rain_day'=>round($avgRainDay,2),
+            'avg_rain_night'=>round($avgRainNight,2),
+            'avg_ground_humi_day'=>round($avgGroundHumDay,2),
+            'avg_ground_humi_night'=>round($avgGroundHumNight,2)
+        ]);
+
+        return $averageData;
+    }
+
+    /**
      * Function getting data from wether station and put into database
      */
     public function storeData($deviceKeay, $tempC, $hum, $temp, $pres, $humiGr, $rain, $isRain, $isGroundWet){
