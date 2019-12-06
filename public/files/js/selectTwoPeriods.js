@@ -195,8 +195,14 @@ var getData = function (dS, mS, yS, dE, mE, yE, dS2, mS2, yS2, dE2, mE2, yE2) {
             return;
         lock = true;
 
+        /* Daty */
+        $('#data-start-1').html($("#datepicker-start-first").val());
+        $('#data-end-1').html($("#datepicker-end-first").val());
+        $('#data-start-2').html($("#datepicker-start-second").val());
+        $('#data-end-2').html($("#datepicker-end-second").val());
+
         $.ajax({
-            url: '/measurment/period/' + parameters1,
+            url: '/measurment/avg/' + parameters1,
             type: 'GET',
             data: {},
             dataType: 'JSON'
@@ -204,79 +210,32 @@ var getData = function (dS, mS, yS, dE, mE, yE, dS2, mS2, yS2, dE2, mE2, yE2) {
             .done(function (res) {
                 dataAjax=res;
 
-                res.forEach(el => {
-
-                    if(el.date.split(' ')[1].split(':')[0] >= 6 && el.date.split(' ')[1].split(':')[0] <= 18)
-                    {
-                        srTempDay = parseFloat(srTempDay) + parseFloat(el.temperature);
-                        srCisDay += el.air_pressure;
-                        srWilgDay += el.air_humidity;
-                        srOpDay += el.rainfall;
-                        srWilgGDay += el.soil_moisture;
-                        countD ++;
-                    }
-                    else
-                    {
-                        srTempNight = parseFloat(srTempNight) + parseFloat(el.temperature);
-                        srCisNight += el.air_pressure;
-                        srWilgNight += el.air_humidity;
-                        srOpNight += el.rainfall;
-                        srWilgGNight += el.soil_moisture;
-                        countN ++;
-                    }
-                })
-                srTempDay /= countD;
-                srCisDay /= countD;
-                srWilgDay /= countD;
-                srOpDay /= countD;
-                srWilgGDay /= countD;
-                srTempNight /= countN;
-                srCisNight /= countN;
-                srWilgNight /= countN;
-                srOpNight /= countN;
-                srWilgGNight /= countN;
-
+                /*
                 console.log('Średnia     ')
                 console.log('---dzień---;')
-                console.log('temp       :', parseFloat(srTempDay).toFixed(2))
-                console.log('cisnienie  :', parseFloat(srCisDay).toFixed(2))
-                console.log('wilgotność :', parseFloat(srWilgDay).toFixed(2))
-                console.log('opady      :', parseFloat(srOpDay).toFixed(2))
-                console.log('wilg gleby :', parseFloat(srWilgGDay).toFixed(2))
+                console.log('temp       :', res[0].avg_temperature_day)
+                console.log('cisnienie  :', res[0].avg_pressure_day)
+                console.log('wilgotność :', res[0].avg_humidity_day)
+                console.log('opady      :', res[0].avg_rain_day)
+                console.log('wilg gleby :', res[0].avg_ground_humi_day)
                 console.log('----noc----;')
-                console.log('temp       :', parseFloat(srTempNight).toFixed(2))
-                console.log('cisnienie  :', parseFloat(srCisNight).toFixed(2))
-                console.log('wilgotność :', parseFloat(srWilgNight).toFixed(2))
-                console.log('opady      :', parseFloat(srOpNight).toFixed(2))
-                console.log('wilg gleby :', parseFloat(srWilgGNight).toFixed(2))
-
-                /* Daty */
-                $('#data-start-1').html($("#datepicker-start-first").val());
-                $('#data-end-1').html($("#datepicker-end-first").val());
-                $('#data-start-2').html($("#datepicker-start-second").val());
-                $('#data-end-2').html($("#datepicker-end-second").val());
+                console.log('temp       :', res[0].avg_temperature_night)
+                console.log('cisnienie  :', res[0].avg_pressure_night)
+                console.log('wilgotność :', res[0].avg_humidity_night)
+                console.log('opady      :', res[0].avg_rain_night)
+                console.log('wilg gleby :', res[0].avg_ground_humi_night)//*/
 
                 /* Wartości */
-                $('#sTD1').html(parseFloat(srTempDay).toFixed(2));
-                $('#sTN1').html(parseFloat(srTempNight).toFixed(2));
-                $('#sCD1').html(parseFloat(srCisDay).toFixed(2));
-                $('#sCN1').html(parseFloat(srCisNight).toFixed(2));
-                $('#sWD1').html(parseFloat(srWilgDay).toFixed(2));
-                $('#sWN1').html(parseFloat(srWilgNight).toFixed(2));
-                $('#sOD1').html(parseFloat(srOpDay).toFixed(2));
-                $('#sON1').html(parseFloat(srOpNight).toFixed(2));
-                $('#sWGD1').html(parseFloat(srWilgGDay).toFixed(2));
-                $('#sWGN1').html(parseFloat(srWilgGNight).toFixed(2));
-                /*$('#').html();
-                $('#').html();
-                $('#').html();
-                $('#').html();
-                $('#').html();
-                $('#').html();
-                $('#').html();
-                $('#').html();
-                $('#').html();
-                $('#').html();*/
+                $('#sTD1').html(res[0].avg_temperature_day);
+                $('#sTN1').html(res[0].avg_temperature_night);
+                $('#sCD1').html(res[0].avg_pressure_day);
+                $('#sCN1').html(res[0].avg_pressure_night);
+                $('#sWD1').html(res[0].avg_humidity_day);
+                $('#sWN1').html(res[0].avg_humidity_night);
+                $('#sOD1').html(res[0].avg_rain_day);
+                $('#sON1').html(res[0].avg_rain_night);
+                $('#sWGD1').html(res[0].avg_ground_humi_day);
+                $('#sWGN1').html(res[0].avg_ground_humi_night);
             })
             .fail(function () {
                 $('.form-message').html( "Wystąpił błąd" );
@@ -287,7 +246,7 @@ var getData = function (dS, mS, yS, dE, mE, yE, dS2, mS2, yS2, dE2, mE2, yE2) {
         //okres drugi
 
         $.ajax({
-            url: '/measurment/period/' + parameters2,
+            url: '/measurment/avg/' + parameters2,
             type: 'GET',
             data: {},
             dataType: 'JSON'
@@ -295,48 +254,17 @@ var getData = function (dS, mS, yS, dE, mE, yE, dS2, mS2, yS2, dE2, mE2, yE2) {
             .done(function (res) {
                 dataAjax=res;
 
-                res.forEach(el => {
-
-                    if(el.date.split(' ')[1].split(':')[0] >= 6 && el.date.split(' ')[1].split(':')[0] <= 18)
-                    {
-                        srTempDay2 = parseFloat(srTempDay2) + parseFloat(el.temperature);
-                        srCisDay2 += el.air_pressure;
-                        srWilgDay2 += el.air_humidity;
-                        srOpDay2 += el.rainfall;
-                        srWilgGDay2 += el.soil_moisture;
-                        countD2 ++;
-                    }
-                    else
-                    {
-                        srTempNight2 = parseFloat(srTempNight2) + parseFloat(el.temperature);
-                        srCisNight2 += el.air_pressure;
-                        srWilgNight2 += el.air_humidity;
-                        srOpNight2 += el.rainfall;
-                        srWilgGNight2 += el.soil_moisture;
-                        countN2 ++;
-                    }
-                })
-                srTempDay2 /= countD2;
-                srCisDay2 /= countD2;
-                srWilgDay2 /= countD2;
-                srOpDay2 /= countD2;
-                srWilgGDay2 /= countD2;
-                srTempNight2 /= countN2;
-                srCisNight2 /= countN2;
-                srWilgNight2 /= countN2;
-                srOpNight2 /= countN2;
-                srWilgGNight2 /= countN2;
                 /* Wartości */
-                $('#sTD2').html(parseFloat(srTempDay2).toFixed(2));
-                $('#sTN2').html(parseFloat(srTempNight2).toFixed(2));
-                $('#sCD2').html(parseFloat(srCisDay2).toFixed(2));
-                $('#sCN2').html(parseFloat(srCisNight2).toFixed(2));
-                $('#sWD2').html(parseFloat(srWilgDay2).toFixed(2));
-                $('#sWN2').html(parseFloat(srWilgNight2).toFixed(2));
-                $('#sOD2').html(parseFloat(srOpDay2).toFixed(2));
-                $('#sON2').html(parseFloat(srOpNight2).toFixed(2));
-                $('#sWGD2').html(parseFloat(srWilgGDay2).toFixed(2));
-                $('#sWGN2').html(parseFloat(srWilgGNight2).toFixed(2));
+                $('#sTD2').html(res[0].avg_temperature_day);
+                $('#sTN2').html(res[0].avg_temperature_night);
+                $('#sCD2').html(res[0].avg_pressure_day);
+                $('#sCN2').html(res[0].avg_pressure_night);
+                $('#sWD2').html(res[0].avg_humidity_day);
+                $('#sWN2').html(res[0].avg_humidity_night);
+                $('#sOD2').html(res[0].avg_rain_day);
+                $('#sON2').html(res[0].avg_rain_night);
+                $('#sWGD2').html(res[0].avg_ground_humi_day);
+                $('#sWGN2').html(res[0].avg_ground_humi_night);
             })
             .fail(function () {
                 $('.form-message').html( "Wystąpił błąd" );
