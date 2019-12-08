@@ -92,9 +92,9 @@ class MeasurementController extends Controller
                 'rainfall'=>round(($dataToReturn[$lengthArr-2]['rainfall']+$dataToReturn[$lengthArr-1]['rainfall'])/2,2),
                 'soil_moisture'=>round(($dataToReturn[$lengthArr-2]['soil_moisture']+$dataToReturn[$lengthArr-1]['soil_moisture'])/2,2)
             ]);
+            return $temp;
         }
-        //return json_encode($temp);
-        return $temp;
+        return $dataMearsurment;
     }
 
     /**
