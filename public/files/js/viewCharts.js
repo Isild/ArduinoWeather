@@ -27,7 +27,9 @@ var chartTemperatre = new Chart(ctxTemperature, {
                 label: 'Temperatura powietrza',
                 data: dataTemp,
                 borderColor: 'rgba(255, 0, 0, 1)',
-                borderWidth: 1
+                borderWidth: 1,
+                pointStyle: 'line',
+                fill: false
             }
         ]
     },
@@ -62,8 +64,9 @@ var chartPressure = new Chart(ctxPressure, {
             {
                 label: 'Ciśnienie',
                 data: dataPress,
-                borderColor: 'rgb(6,3,1)',
-                borderWidth: 1
+                borderColor: 'rgb(159,156,39)',
+                borderWidth: 1,
+                pointStyle: 'line'
             }
         ]
     },
@@ -102,8 +105,10 @@ var chartHumidity = new Chart(ctxHumidity, {
             {
                 label: 'Wilgotność powietrza',
                 data: dataHum,
-                borderColor: 'rgb(255,103,17)',
-                borderWidth: 1
+                borderColor: 'rgb(197,28,255)',
+                fillColor : 'rgb(197,28,255)',
+                borderWidth: 1,
+                pointStyle: 'line'
             }
         ]
     },
@@ -124,14 +129,19 @@ var chartHumidity = new Chart(ctxHumidity, {
                 scaleLabel: {
                     display: true,
                     labelString: "Data"
-                }
+                },
+                gridLines: {
+                    offsetGridLines: false
+                },
+                barPercentage: 1.1,
+                categoryPercentage: 1.0
             }]
         }
     }
 });
 
 var chartRain = new Chart(ctxRain, {
-    type: 'line',
+    type: 'bar',
     data: {
         labels: dadaInterval,
         datasets: [
@@ -160,7 +170,9 @@ var chartRain = new Chart(ctxRain, {
                 scaleLabel: {
                     display: true,
                     labelString: "Data"
-                }
+                },
+                barPercentage: 1.1,
+                categoryPercentage: 1.0
             }]
         }
     }
@@ -175,7 +187,8 @@ var chartGroundHumidity = new Chart(ctxGroundHumidity, {
                 label: 'Wilgotoność gleby',
                 data: dataGroHum,
                 borderColor: 'rgb(42,4,255)',
-                borderWidth: 1
+                borderWidth: 1,
+                pointStyle: 'line'
             }
         ]
     },
@@ -196,7 +209,9 @@ var chartGroundHumidity = new Chart(ctxGroundHumidity, {
                 scaleLabel: {
                     display: true,
                     labelString: "Data"
-                }
+                },
+                barPercentage: 1.1,
+                categoryPercentage: 1.0
             }]
         }
     }
@@ -226,7 +241,9 @@ var createCharts = function () {
                     label: 'Temperatura',
                     data: dataTemp,
                     borderColor: 'rgba(255, 0, 0, 1)',
-                    borderWidth: 1
+                    borderWidth: 1,
+                    pointStyle: 'line',
+                    fill: false
                 }
             ]
         },
@@ -244,8 +261,9 @@ var createCharts = function () {
                 {
                     label: 'Ciśnienie',
                     data: dataPress,
-                    borderColor: 'rgb(6,3,1)',
-                    borderWidth: 1
+                    borderColor: 'rgb(159,156,39)',
+                    borderWidth: 1,
+                    pointStyle: 'line'
                 }
             ]
         },
@@ -263,8 +281,10 @@ var createCharts = function () {
                 {
                     label: 'Wilgotność',
                     data: dataHum,
-                    borderColor: 'rgb(255,103,17)',
-                    borderWidth: 1
+                    borderColor: 'rgb(197,28,255)',
+                    borderWidth: 1,
+                    categoryPercentage: 1.0,
+                    barPercentage: 1.0
                 }
             ]
         },
@@ -275,7 +295,7 @@ var createCharts = function () {
     });
 
     chartRain = new Chart(ctxRain, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: dadaInterval,
             datasets: [
