@@ -58,24 +58,28 @@
     <div id="diagrams">
         <center>
             <div class="row">
-                <div class="col-sm-6">
-                    <canvas id="temperature" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
-                </div>
-                <div class="col-sm-6">
-                    <canvas id="pressure" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                <div class="col-sm-12">
+                    <canvas id="temperature" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
-                    <canvas id="humidity" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
-                </div>
-                <div class="col-sm-6">
-                    <canvas id="rain" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                <div class="col-sm-12">
+                    <canvas id="pressure" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
-                    <canvas id="groundHumidity" width="700" height="500">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                <div class="col-sm-12">
+                    <canvas id="humidity" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <canvas id="rain" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <canvas id="groundHumidity" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
                 </div>
             </div>
         </center>
