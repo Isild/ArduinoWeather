@@ -31,62 +31,69 @@
     @include('messages.message')
 </div>
 
-<div class="flex-center position-ref full-height">
-    <div id="input" class="container">
-        <div class="form-group row">
-            <br><br>
-            <label class="col-md-2 text-md-right">Początek przedziału</label>
-            <div class="col-md-6">
-                <input type="text" id="datepicker-start">
+@if (Route::has('login'))
+    @auth
+        <div class="flex-center position-ref full-height">
+            <div id="input" class="container">
+                <div class="form-group row">
+                    <br><br>
+                    <label class="col-md-2 text-md-right">Początek przedziału</label>
+                    <div class="col-md-6">
+                        <input type="text" id="datepicker-start">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 text-md-right">Koniec przedziału</label>
+                    <div class="col-md-6">
+                        <input type="text" id="datepicker-end">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-md-2 text-md-right"> </label>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary" id="show-data-btn">Wyświetl dane</button>
+                    </div>
+                </div>
             </div>
+            <div id="diagrams">
+                <center>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <canvas id="temperature" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <canvas id="pressure" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <canvas id="humidity" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <canvas id="rain" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <canvas id="groundHumidity" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
+                        </div>
+                    </div>
+                </center>
+            </div>
+
+
         </div>
-
-        <div class="form-group row">
-            <label class="col-md-2 text-md-right">Koniec przedziału</label>
-            <div class="col-md-6">
-                <input type="text" id="datepicker-end">
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-md-2 text-md-right"> </label>
-            <div class="col-md-6">
-                <button type="button" class="btn btn-primary" id="show-data-btn">Wyświetl dane</button>
-            </div>
-        </div>
-    </div>
-    <div id="diagrams">
-        <center>
-            <div class="row">
-                <div class="col-sm-12">
-                    <canvas id="temperature" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <canvas id="pressure" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <canvas id="humidity" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <canvas id="rain" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <canvas id="groundHumidity" width="1500%" height="350">Twoja przeglądarka nie obsługuje wyświetlania wykresów.</canvas>
-                </div>
-            </div>
-        </center>
-    </div>
-
-
-</div>
+    @else
+        <br>
+        <center><b> Brak uprawnień  </b></center>
+    @endauth
+@endif
 
 <script src="/files/js/viewCharts.js" async></script> <!-- async mówi, żeby skrypt był wykonany asynchronicznie, uzupełnianie danych wywoływać funkcją sprawdzającą czy dokument został wczytany -->
 <script src="/files/js/selectPeriod.js" async></script>
