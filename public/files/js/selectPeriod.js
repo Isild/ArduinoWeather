@@ -121,17 +121,20 @@ var sendRequest = function () {
     chart.data.datasets[0].data.splice(0,1);
     chart.update();
     */
+    var promise1 = new Promise(function(resolve, reject) {
+        resolve('foo');
+    });
 
+    promise1.then(function(value) {
+        var dateS = $("#datepicker-start").val();
+        var dateE = $("#datepicker-end").val();
 
-
-    var dateS = $("#datepicker-start").val();
-    var dateE = $("#datepicker-end").val();
-
-    getData(dateS.split('-')[0], dateS.split('-')[1], dateS.split('-')[2], dateE.split('-')[0], dateE.split('-')[1], dateE.split('-')[2])
+        getData(dateS.split('-')[0], dateS.split('-')[1], dateS.split('-')[2], dateE.split('-')[0], dateE.split('-')[1], dateE.split('-')[2])
+    });
 }
 
 var getData = function (dS, mS, yS, dE, mE, yE) {
-    var parameters = yS + '/' + mS + '/' + dS + '/00/00/00/' + yE + '/' + mE + '/' + dE + '/00/00/00/';
+    var parameters = yS + '/' + mS + '/' + dS + '/00/00/00/' + yE + '/' + mE + '/' + dE + '/23/59/59/';
 
     var dataAjax;
     var lock = false;
@@ -148,38 +151,45 @@ var getData = function (dS, mS, yS, dE, mE, yE) {
         })
             .done(function (res) {
                 dataAjax=res;
-                if(chartTemperatre.data.labels.length != 0){
-                    for(i=0; i<chartTemperatre.data.labels.length; i++){
+                var len = 0;
+                len = chartTemperatre.data.labels.length;
+                if(len != 0){
+                    for(i=0; i<len; i++){
                         chartTemperatre.data.labels.splice(0,1);
                         chartTemperatre.data.datasets[0].data.splice(0,1);
                     }
                 }
-                if(chartPressure.data.labels.length != 0){
-                    for(i=0; i<chartPressure.data.labels.length; i++){
+                len = chartPressure.data.labels.length;
+                if(len != 0){
+                    for(i=0; i<len; i++){
                         chartPressure.data.labels.splice(0,1);
                         chartPressure.data.datasets[0].data.splice(0,1);
                     }
                 }
-                if(chartHumidity.data.labels.length != 0){
-                    for(i=0; i<chartHumidity.data.labels.length; i++){
+                len = chartHumidity.data.labels.length;
+                if(len != 0){
+                    for(i=0; i<len; i++){
                         chartHumidity.data.labels.splice(0,1);
                         chartHumidity.data.datasets[0].data.splice(0,1);
                     }
                 }
-                if(chartRain.data.labels.length != 0){
-                    for(i=0; i<chartRain.data.labels.length; i++){
+                len = chartRain.data.labels.length;
+                if(len != 0){
+                    for(i=0; i<len; i++){
                         chartRain.data.labels.splice(0,1);
                         chartRain.data.datasets[0].data.splice(0,1);
                     }
                 }
-                if(chartGroundHumidity.data.labels.length != 0){
-                    for(i=0; i<chartGroundHumidity.data.labels.length; i++){
+                len = chartGroundHumidity.data.labels.length;
+                if(len != 0){
+                    for(i=0; i<len; i++){
                         chartGroundHumidity.data.labels.splice(0,1);
                         chartGroundHumidity.data.datasets[0].data.splice(0,1);
                     }
                 }
                 if(dadaInterval && dadaInterval.data){
-                    for(i=0; i<dadaInterval.data.labels.length; i++){
+                    len = dadaInterval.data.labels.length;
+                    for(i=0; i<len; i++){
                         dadaInterval.data.labels.splice(0,1);
                         dadaInterval.data.datasets[0].data.splice(0,1);
                     }

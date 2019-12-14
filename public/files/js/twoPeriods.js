@@ -204,6 +204,7 @@ var chartGroundHumidity = new Chart(ctxGroundHumidity, {
 
 var clearCharts = function () {
     dadaInterval = [];
+
     destroyCharts();
     createCharts();
 }
