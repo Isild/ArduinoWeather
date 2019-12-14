@@ -19,9 +19,9 @@ class MeasurementTableSeeder extends Seeder
     {
         $y = 2019;
         $m = 12;
-        $d = 8;
-        $h = 11;
-        $min = 0;
+        $d = 13;
+        $h = 15;
+        $min = 30;
         $s = 0;
         $temperature = 15;
         $pressuer = 1008;
