@@ -18,10 +18,10 @@ class MeasurementTableSeeder extends Seeder
     public function run()
     {
         $y = 2019;
-        $m = 11;
-        $d = 20;
-        $h = 0;
-        $min = 50;
+        $m = 12;
+        $d = 8;
+        $h = 11;
+        $min = 0;
         $s = 0;
         $temperature = 15;
         $pressuer = 1008;
@@ -30,7 +30,7 @@ class MeasurementTableSeeder extends Seeder
         $humidity_ground = 20;
         $boolRain = 0;
 
-        for($j=0; $j<12; $j++){
+        for($j=0; $j<1; $j++){
             // od 00:00 do 6:00
             for($i=0; $i<72; $i++){
                 if($min >= 60){
