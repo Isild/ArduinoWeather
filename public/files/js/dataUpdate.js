@@ -73,52 +73,78 @@ $(document).ready(function() {
             url: '/measurment/'+lastNumber,
             type: 'GET',
             data: {},
-            dataType: 'JSON'
-        })
-            .done(function (res) {
-                dataAjax=res;
-                var tmpLastNumber = 0
-                res.forEach(el => {
-                    if(lastNumber < el.number)
-                    {
-                        dadaInterval.push(el.date);
-                        if(chartTemperatre.data.labels.length >= 288)
-                            removeData(chartTemperatre);
-                        dataTemp.push(el.temperature);
+            dataType: 'JSON',
+            success: function (res) {
+                /*var dt = new Date();
+                var dtChart = new Date(dadaInterval[0]);
+                */
+                if(res) {
+                    dataAjax = res;
+                    var tmpLastNumber = 0
+                    res.forEach(el => {
+                        if (lastNumber < el.number) {
+                            /*var dt = new Date();
+                            var dtJson = new Date(el.date);
+                            var dtChart = new Date(dadaInterval[0])
+                            console.log('dt: ', dt, ', ', dtJson, ', chart: ', dadaInterval[0], ', date ', dtChart)
+                            if(dtChart >= dtJson){
+                                console.log('dtChart większe')
+                            } else {
+                                console.log('dtJson większe')
+                            }
+                            if(dt >= dtJson){
+                                console.log('dt większe')
+                            } else {
+                                console.log('dtJson większe')
+                            }
+                            if(dtChart >= dt){
+                                console.log('dtChart większe')
+                            } else {
+                                console.log('dt większe')
+                            }*/
 
-                        if(chartPressure.data.labels.length >= 288)
-                            removeData(chartPressure);
-                        dataPress.push(el.air_pressure);
+                            dadaInterval.push(el.date);
+                            if (chartTemperatre.data.labels.length >= 288)
+                                removeData(chartTemperatre);
+                            dataTemp.push(el.temperature);
 
-                        if(chartHumidity.data.labels.length >= 288)
-                            removeData(chartHumidity);
-                        dataHum.push(el.air_humidity);
+                            if (chartPressure.data.labels.length >= 288)
+                                removeData(chartPressure);
+                            dataPress.push(el.air_pressure);
 
-                        if(chartRain.data.labels.length >= 288)
-                            removeData(chartRain);
-                        dataRain.push(el.rainfall);
+                            if (chartHumidity.data.labels.length >= 288)
+                                removeData(chartHumidity);
+                            dataHum.push(el.air_humidity);
 
-                        if(chartGroundHumidity.data.labels.length >= 288)
-                            removeData(chartGroundHumidity);
-                        dataGroHum.push(el.soil_moisture);
+                            if (chartRain.data.labels.length >= 288)
+                                removeData(chartRain);
+                            dataRain.push(el.rainfall);
 
-                        tmpLastNumber = el.number;
-                    }
-                })
+                            if (chartGroundHumidity.data.labels.length >= 288)
+                                removeData(chartGroundHumidity);
+                            dataGroHum.push(el.soil_moisture);
 
-                if(tmpLastNumber > 0)
-                    lastNumber = tmpLastNumber;
+                            tmpLastNumber = el.number;
+                        }
+                    })
 
-                chartTemperatre.update();
-                chartPressure.update();
-                chartHumidity.update();
-                chartRain.update();
-                chartGroundHumidity.update();
-            })
-            .fail(function () {
+                    if (tmpLastNumber > 0)
+                        lastNumber = tmpLastNumber;
+
+                    chartTemperatre.update();
+                    chartPressure.update();
+                    chartHumidity.update();
+                    chartRain.update();
+                    chartGroundHumidity.update();
+                }
+            },
+            error:function () {
                 $('.form-message').html( "Wystąpił błąd" );
-            });
+            }
+        })
+            .done()
+            .fail();
 
         lock = false;
-    }, 5000)
+    }, 120000)
 })
