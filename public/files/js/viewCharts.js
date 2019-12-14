@@ -28,7 +28,6 @@ var chartTemperatre = new Chart(ctxTemperature, {
                 data: dataTemp,
                 borderColor: 'rgba(255, 0, 0, 1)',
                 borderWidth: 1,
-                pointStyle: 'line',
                 fill: false
             }
         ]
@@ -52,6 +51,11 @@ var chartTemperatre = new Chart(ctxTemperature, {
                     labelString: "Data"
                 }
             }]
+        },
+        elements: {
+            point:{
+                radius: 0
+            }
         }
     }
 });
@@ -66,7 +70,6 @@ var chartPressure = new Chart(ctxPressure, {
                 data: dataPress,
                 borderColor: 'rgb(159,156,39)',
                 borderWidth: 1,
-                pointStyle: 'line'
             }
         ]
     },
@@ -93,6 +96,11 @@ var chartPressure = new Chart(ctxPressure, {
                     labelString: "Data"
                 }
             }]
+        },
+        elements: {
+            point:{
+                radius: 0
+            }
         }
     }
 });
@@ -108,7 +116,6 @@ var chartHumidity = new Chart(ctxHumidity, {
                 borderColor: 'rgb(197,28,255)',
                 fillColor : 'rgb(197,28,255)',
                 borderWidth: 1,
-                pointStyle: 'line'
             }
         ]
     },
@@ -136,6 +143,11 @@ var chartHumidity = new Chart(ctxHumidity, {
                 barPercentage: 1.1,
                 categoryPercentage: 1.0
             }]
+        },
+        elements: {
+            point:{
+                radius: 0
+            }
         }
     }
 });
@@ -174,6 +186,11 @@ var chartRain = new Chart(ctxRain, {
                 barPercentage: 1.1,
                 categoryPercentage: 1.0
             }]
+        },
+        elements: {
+            point:{
+                radius: 0
+            }
         }
     }
 });
@@ -188,7 +205,6 @@ var chartGroundHumidity = new Chart(ctxGroundHumidity, {
                 data: dataGroHum,
                 borderColor: 'rgb(42,4,255)',
                 borderWidth: 1,
-                pointStyle: 'line'
             }
         ]
     },
@@ -213,6 +229,11 @@ var chartGroundHumidity = new Chart(ctxGroundHumidity, {
                 barPercentage: 1.1,
                 categoryPercentage: 1.0
             }]
+        },
+        elements: {
+            point:{
+                radius: 0
+            }
         }
     }
 });
@@ -242,7 +263,6 @@ var createCharts = function () {
                     data: dataTemp,
                     borderColor: 'rgba(255, 0, 0, 1)',
                     borderWidth: 1,
-                    pointStyle: 'line',
                     fill: false
                 }
             ]
@@ -250,6 +270,11 @@ var createCharts = function () {
         options: {
             responsive: false,
             maintainAspectRatio: false,
+            elements: {
+                point:{
+                    radius: 0
+                }
+            }
         }
     });
 
@@ -263,13 +288,17 @@ var createCharts = function () {
                     data: dataPress,
                     borderColor: 'rgb(159,156,39)',
                     borderWidth: 1,
-                    pointStyle: 'line'
                 }
             ]
         },
         options: {
             responsive: false,
             maintainAspectRatio: false,
+            elements: {
+                point:{
+                    radius: 0
+                }
+            }
         }
     });
 
@@ -291,6 +320,11 @@ var createCharts = function () {
         options: {
             responsive: false,
             maintainAspectRatio: false,
+            elements: {
+                point:{
+                    radius: 0
+                }
+            }
         }
     });
 
@@ -310,6 +344,11 @@ var createCharts = function () {
         options: {
             responsive: false,
             maintainAspectRatio: false,
+            elements: {
+                point:{
+                    radius: 0
+                }
+            }
         }
     });
 
@@ -329,6 +368,11 @@ var createCharts = function () {
         options: {
             responsive: false,
             maintainAspectRatio: false,
+            elements: {
+                point:{
+                    radius: 0
+                }
+            }
         }
     });
 }
